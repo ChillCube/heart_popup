@@ -86,3 +86,4 @@ func popup(time: float) -> void:
 
 func _on_timer_timeout() -> void:
 	_visible = false;
+
