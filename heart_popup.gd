@@ -1,3 +1,4 @@
+@icon("res://addons/heart_popup/icon_heart.png")
 extends Sprite2D
 class_name HeartPopUp
 
@@ -86,4 +87,3 @@ func popup(time: float) -> void:
 
 func _on_timer_timeout() -> void:
 	_visible = false;
-
