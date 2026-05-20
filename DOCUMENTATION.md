@@ -15,6 +15,12 @@ a node that can be attached and used to display how much health something has, c
 | **health** | `int` | `100` | The number displayed on the popup label |
 | **text_size** | `float` | `0.8` | Label size as a fraction of the sprite's dimensions (1.0 = fill sprite) |
 
+### 🔔 Signals
+| Signal | Arguments | Description |
+| :--- | :--- | :--- |
+| **popup_shown** | - |  Emitted when the popup becomes visible |
+| **popup_hidden** | - |  Emitted when the popup finishes its display duration and hides |
+
 ### 🛠️ Methods
 | Method | Arguments | Returns | Description |
 | :--- | :--- | :--- | :--- |

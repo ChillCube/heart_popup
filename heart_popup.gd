@@ -6,6 +6,9 @@ class_name HeartPopUp
 @export var popup_speed : float = 10; ## SmoothMovement speed for the scale-in / scale-out animation
 @export var health : int = 100; ## The number displayed on the popup label
 @export var text_size : float = 0.8; ## Label size as a fraction of the sprite's dimensions (1.0 = fill sprite)
+signal popup_shown ## Emitted when the popup becomes visible
+signal popup_hidden ## Emitted when the popup finishes its display duration and hides
+
 var mover : SmoothMovement
 var label : Label;
 var timer : Timer;
@@ -80,6 +83,7 @@ func _set_label_size(width_percent: float = 1.0, height_percent: float = 1.0) ->
 
 func popup(time: float) -> void: ## Shows the popup for `time` seconds, then hides it via a one-shot timer
 	_visible = true;
+	popup_shown.emit()
 	timer = Timer.new();
 	timer.wait_time = time;
 	timer.one_shot = true;
@@ -87,3 +91,4 @@ func popup(time: float) -> void: ## Shows the popup for `time` seconds, then hid
 
 func _on_timer_timeout() -> void:
 	_visible = false;
+	popup_hidden.emit()
