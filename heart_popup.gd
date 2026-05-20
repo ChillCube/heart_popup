@@ -2,16 +2,16 @@
 extends Sprite2D
 class_name HeartPopUp
 
-@export var _visible : bool = true;
-@export var popup_speed : float = 10;
-@export var health : int = 100;
-@export var text_size : float = 0.8;
+@export var _visible : bool = true; ## Whether the popup is currently visible (scaled to 1) or hidden (scaled to 0)
+@export var popup_speed : float = 10; ## SmoothMovement speed for the scale-in / scale-out animation
+@export var health : int = 100; ## The number displayed on the popup label
+@export var text_size : float = 0.8; ## Label size as a fraction of the sprite's dimensions (1.0 = fill sprite)
 var mover : SmoothMovement
 var label : Label;
 var timer : Timer;
 var position_offset : Vector2
 
-static func init(sprite:Texture2D, parent:Node2D, _position:Vector2) -> HeartPopUp:
+static func init(sprite:Texture2D, parent:Node2D, _position:Vector2) -> HeartPopUp: ## Factory: creates a HeartPopUp, attaches it to parent at _position, and assigns the icon texture
 	var popup = HeartPopUp.new();
 	parent.add_child(popup)
 	popup.position_offset = _position;
@@ -78,7 +78,7 @@ func _set_label_size(width_percent: float = 1.0, height_percent: float = 1.0) ->
 		# Optional: Add minimum scale
 		label.scale = Vector2(max(0.1, uniform_scale), max(0.1, uniform_scale))
 
-func popup(time: float) -> void:
+func popup(time: float) -> void: ## Shows the popup for `time` seconds, then hides it via a one-shot timer
 	_visible = true;
 	timer = Timer.new();
 	timer.wait_time = time;
